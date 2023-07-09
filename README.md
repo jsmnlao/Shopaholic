@@ -1,6 +1,8 @@
 # Shopaholic
 Name of Website: Shopaholic
+
 Database Application Type: E-Commerce Website
+
 Purpose of Application: Our e-commerce website will be a place for users to shop and for merchants to sell their products. This website and its activities will be overseen by the admin. 
 
 Application Functionalities: Our website will have three main components: users, merchants/small businesses, and admin. These three components will have different functionalities and have access to different parts of the website. With these different views, only necessary data will be presented and details of the underlying implementation will be hidden. 
