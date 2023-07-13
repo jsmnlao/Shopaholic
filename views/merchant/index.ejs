@@ -1,3 +1,15 @@
 <%- contentFor('title') %>merchant
 <%- contentFor('body') %>
 <h1>merchant page</h1>
+
+
+
+<a href="/merchant/new">Create Merchant</a>
+<ul>
+  <% for (let record of records) { %>
+    <li>
+      <a href="/merchant/<%= record.id %>">
+        <%= record.name %> </a><br>
+      </li>
+  <% } %>
+</ul>

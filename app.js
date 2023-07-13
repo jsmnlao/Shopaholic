@@ -9,6 +9,7 @@ const indexRouter = require('./routes/index');
 const adminRouter = require('./routes/admin');
 const merchantRouter = require('./routes/merchant');
 const userRouter = require('./routes/users');
+const db = require('./models');
 
 
 const app = express();
@@ -33,6 +34,7 @@ app.use((req, res, next) => {
   next();
 });
 
+db.sequelize.sync({ force: false })
 
 app.use('/', indexRouter);
 app.use('/admin', adminRouter);
