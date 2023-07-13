@@ -5,6 +5,7 @@ const path = require('path');
 const i18n = require('i18n');
 const flash = require('connect-flash');
 const expressLayouts = require('express-ejs-layouts');
+const bodyParser = require('body-parser')
 const indexRouter = require('./routes/index');
 const adminRouter = require('./routes/admin');
 const merchantRouter = require('./routes/merchant');
@@ -19,6 +20,10 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
 app.use(flash());
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 
 
 /// load in all the configured routes in /routes/index.js
