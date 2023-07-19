@@ -12,7 +12,6 @@ const merchantRouter = require('./routes/merchant');
 const userRouter = require('./routes/users');
 const db = require('./models');
 
-
 const app = express();
 
 
