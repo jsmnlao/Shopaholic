@@ -1,3 +1,5 @@
+package JDBC;
+
 import java.sql.*;
 
 public class JDBC {
@@ -19,9 +21,8 @@ public class JDBC {
         rs.next();
         String name = rs.getString("name");
         int age = rs.getInt("age");
-        System.out.println(name +" "+ age);
-        
-        
+        Date date = rs.getDate("date");
+        System.out.println(name +" "+ age + " "+ date);
         
         con.close();
 	}
