@@ -9,7 +9,7 @@
 <body>
 	<div align="center">
 		<h1>Product Register Form</h1>
-        <form action="register.html" method="post">
+        <form action="ProductServlet" method="post">
 			<table style="with: 80%">
 				<tr>
 					<td>PID</td>
