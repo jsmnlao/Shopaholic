@@ -1,6 +1,6 @@
 # Shopaholic
 Name of Website: Shopaholic
-
+<!--a comment -->
 Database Application Type: E-Commerce Website
 
 Purpose of Application: Our e-commerce website will be a place for users to shop and for merchants to sell their products. This website and its activities will be overseen by the admin. 
