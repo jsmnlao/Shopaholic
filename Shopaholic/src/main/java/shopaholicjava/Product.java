@@ -12,7 +12,7 @@ public class Product {
 	public String getPID() {
 		return PID;
 	}
-	
+	 
 	public void setPID(String pID) {
 		PID = pID;
 	}
