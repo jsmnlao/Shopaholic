@@ -35,7 +35,7 @@ public class JDBC {
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
-		}
+		} 
 		
 		return con;
 	}

@@ -39,9 +39,11 @@
 							<option value="Admin">Admin</option>
 					</select>
 			</table>
+			<h1></h1>
 			<input type="submit" value="Login" />
 		</form>
-		<a href="createaccount.jsp" class="signup-image-link">No account? Create an account!</a>
+		<h1></h1>
+		<a href="createaccount.jsp" >No account? Create an account!</a>
 	</div>
 </body>
 </html>

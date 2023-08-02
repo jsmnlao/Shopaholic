@@ -52,7 +52,6 @@ public class ProductServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		System.out.println("In doPost method");
-
 		
 		String PID = request.getParameter("PID"); 
 		String ProductName = request.getParameter("ProductName"); 
@@ -73,8 +72,6 @@ public class ProductServlet extends HttpServlet {
 		 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/registerproductsuccess.jsp");
 		 dispatcher.forward(request, response);
 //		 response.sendRedirect("registerproductsuccess.jsp");
-		
-		
 	}
 
 }

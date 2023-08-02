@@ -4,16 +4,17 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Users Sign Up Here</title>
+<title>Editing Merchant</title>
 </head>
 <body>
 	<div align="center">
-		<h1>Please enter your info below to create an account.</h1>
-		<form action="SignUpServlet" method="POST">
+		<header>Change merchant info below:</header>
+		<h1></h1>
+		<form action="EditMerchantServlet" method="post">
 			<table style="with: 80%">
 				<tr>
-					<td>ID</td>
-					<td><input type="text" name="ID" /></td>
+					<td>MID</td>
+					<td><input type="text" name="MID" /></td>
 				</tr>
 				<tr>
 					<td>First Name</td>
@@ -32,15 +33,10 @@
 					<td><input type="password" name="UserPassword" /></td>
 				</tr>
 				<tr>
-					<td>Select UserType</td>
-					<td><select name="UserType">
-							<option value="User">User</option>
-							<option value="Merchant">Merchant</option>
-					</select>
 			</table>
 			<h1></h1>
-			<input type="submit" value="Create"/>
+			<input type="submit" value="Save" /> 
+			<input type="submit" value="Cancel" name="Cancel" />
 		</form>
-	</div>
 </body>
 </html>

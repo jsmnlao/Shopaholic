@@ -27,7 +27,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	public LoginServlet() {
 		super();
-	}
+	} 
 
 	/**
 	 * @see HttpServlet#getPost(HttpServletRequest request, HttpServletResponse
@@ -36,9 +36,6 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-
-//		System.out.println("In doGet method");
-
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/login.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -50,13 +47,7 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-//		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/loginsuccess.jsp");
-//		dispatcher.forward(request, response);
-//		response.sendRedirect("loginsuccess.jsp");
-		
-//		System.out.println("In doPost method");
-
-
+		//Retrieve login info
 		String ID = request.getParameter("ID");
 		String FirstName = request.getParameter("FirstName");
 		String LastName = request.getParameter("LastName");
@@ -64,14 +55,7 @@ public class LoginServlet extends HttpServlet {
 		String UserPassword = request.getParameter("UserPassword");
 		String UserType = request.getParameter("UserType");
 
-//		System.out.println("Got parameters");
-//		System.out.println("ID: " + ID);
-//		System.out.println("FirstName: " + FirstName);
-//		System.out.println("LastName: " + LastName);
-//		System.out.println("UserName: " + UserName);
-//		System.out.println("UserPassword: " + UserPassword);
-//		System.out.println("UserType: " + UserType);
-
+		//Create new user/merchant/admin
 		User user = new User();
 		Merchant merchant = new Merchant();
 		Admin admin = new Admin();
@@ -98,8 +82,6 @@ public class LoginServlet extends HttpServlet {
 		}
 		
 		
-//		System.out.println(user.toString());
-
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 //			System.out.println("Connected!");
@@ -113,8 +95,6 @@ public class LoginServlet extends HttpServlet {
 				PreparedStatement userpst = con.prepareStatement("SELECT * FROM MemberUsers WHERE UID =? AND FirstName =? AND LastName =? AND UserName = ? AND UserPassword =?");
 				PreparedStatement merchantpst = con.prepareStatement("SELECT * FROM Merchants WHERE MID =? AND FirstName =? AND LastName =? AND UserName = ? AND UserPassword =?");
 				PreparedStatement adminpst = con.prepareStatement("SELECT * FROM Admin WHERE AID =? AND FirstName =? AND LastName =? AND UserName = ? AND UserPassword =?")) {
-
-//			System.out.println("In pst()");
 			
 			ResultSet resultSet = null;
 			if(UserType.equals("User")) {
@@ -130,10 +110,6 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute(LastName, user.getLastName());
 				session.setAttribute(UserName, user.getUserName());
 				session.setAttribute(UserPassword, user.getUserPassword());
-				
-//				PrintWriter pwriter = response.getWriter();
-//			    pwriter.print("<a href='welcome'>view details</a>");
-//			    pwriter.close();
 				
 				resultSet = userpst.executeQuery();
 			}
@@ -172,17 +148,23 @@ public class LoginServlet extends HttpServlet {
 				resultSet = adminpst.executeQuery();
 			}
 			
-//			System.out.println("Executed pst");
-			
+			//If user/merchant/admin matches the info in the database, then redirect to corresponding pages
 			if(resultSet.next() == true) {
-				
 				RequestDispatcher dispatcher = null;
-//				response.sendRedirect("/WEB-INF/views/loginsuccess.jsp");
-				dispatcher = request.getRequestDispatcher("/WEB-INF/views/loginsuccess.jsp");
-				dispatcher.forward(request, response);
-				
+				if(UserType.equals("User")) {
+					dispatcher = request.getRequestDispatcher("/WEB-INF/views/loginsuccess.jsp");
+					dispatcher.forward(request, response);
+				}
+				else if(UserType.equals("Merchant")) {
+					dispatcher = request.getRequestDispatcher("/WEB-INF/views/loginsuccess.jsp");
+					dispatcher.forward(request, response);
+				}
+				else if(UserType.equals("Admin")) {
+					response.sendRedirect("AdminServlet");
+				}
 				resultSet.close();
 			}
+			//If user/merchant/admin does NOT match the info in the database, go to error page and try again
 			else {
 				RequestDispatcher dispatcher = null;
 				dispatcher = request.getRequestDispatcher("/WEB-INF/views/loginerror.jsp");
