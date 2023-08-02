@@ -1,23 +1,38 @@
 # Shopaholic
 Name of Website: Shopaholic
-<!--a comment -->
+
 Database Application Type: E-Commerce Website
 
 Purpose of Application: Our e-commerce website will be a place for users to shop and for merchants to sell their products. This website and its activities will be overseen by the admin. 
 
 Application Functionalities: Our website will have three main components: users, merchants/small businesses, and admin. These three components will have different functionalities and have access to different parts of the website. With these different views, only necessary data will be presented and details of the underlying implementation will be hidden. 
 
-1. Users
-- Users can add products to their cart
-- Users may or may not have the account (guests or members)
-- Users can follow merchants they like
-- Users can friend other users 
-- Users are able to give reviews on products they purchased with proof of purchase
-2. Merchants
-- Merchants must have an account
-- Merchants can upload their products on the website (in different categories)
-- Merchants will have merchant view of the web to update the product availabilities and prices
-3. Admin
-- Admin has control over the entire website
-- Admin manages product purchases/orders
-- Admin has the ability to update or delete a user or merchant account
+# How to Setup Shopaholic Application
+
+Technologies/Software used: 
+- Eclipse IDE
+- Tomcat Server
+- Java
+- Java Servlet
+- JSP
+
+1. Download Eclipse IDE for Enterprise Java and Web Developers and Tomcat server.
+2. Download the following jar files from Google:
+- jsp-api-2.2.jar
+- jstl-1.2.jar
+- mysql-connector-j-8.1.0.jar
+- servletapi-2.3.jar
+2. In Eclipse IDE, under Help, click “Install New Software” and install the following software.
+- Eclipse Java Development Tools
+- Eclipse Java EE Developer Tools
+- Eclipse Java Web Developer Tools
+- Eclipse Plug-in Development Environment
+- JSP Server Adapters Extensions (Apache Tomcat)
+3. In Eclipse IDE, under Help, click “Eclipse Marketplace” and install the following software.
+- Eclipse JST Server Adapters (Apache Tomcat, JOnAS, J2EE) Luna
+4. Tomcat Configuration: After switching to Java EE perspective, define a new server.
+- Under the folder “Apache,” choose the corresponding Tomcat Server version (usually 9.0 or 10.1)
+5. Under File, create a new Dynamic Web Project. Choose Apache Tomcat for the target runtime.
+6. Under src/main/webapp/WEB-INF, create a folder named “lib” and copy and paste the four jar files (from STEP 2) into this folder.
+7. Clone the files from the GitHub repository “Shopaholic.”
+8. Run the LoginServlet to start the web application.
