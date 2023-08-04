@@ -36,3 +36,8 @@ Technologies/Software used:
 6. Under src/main/webapp/WEB-INF, create a folder named “lib” and copy and paste the four jar files (from STEP 2) into this folder.
 7. Clone the files from the GitHub repository “Shopaholic.”
 8. Run the LoginServlet to start the web application.
+
+# Division of Work
+Jasmine:
+Phuong:
+Gael:
