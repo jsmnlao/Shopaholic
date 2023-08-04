@@ -38,6 +38,6 @@ Technologies/Software used:
 8. Run the LoginServlet to start the web application.
 
 # Division of Work
-Jasmine:
-Phuong:
-Gael:
+- Jasmine:
+- Phuong:
+- Gael:
