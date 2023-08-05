@@ -1,15 +1,18 @@
 package shopaholicjava;
 
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.*;
-import java.util.ArrayList;
 
 /**
  * Servlet implementation class AdminServlet
@@ -29,7 +32,6 @@ public class AdminServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/adminhomepage.jsp");
 //		dispatcher.forward(request, response);
 		
@@ -42,6 +44,7 @@ public class AdminServlet extends HttpServlet {
 			System.out.println(e.getMessage());
 		}
 		
+		/*********************DISPLAY USER INFORMATION*******************/
 		ArrayList<User> users = new ArrayList<User>();
 		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/shopaholic", "root",
 				"Thisis4mySQL");
@@ -66,18 +69,11 @@ public class AdminServlet extends HttpServlet {
 			} 
 			
 			request.setAttribute("userdata", users); 
-//			for(User u: users) {
-//				System.out.println(u.toString());
-//			}
-			
-//			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/adminhomepage.jsp");
-//			rd.forward(request, response);
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		
+		/*********************DISPLAY MERCHANT INFORMATION*******************/
 		ArrayList<Merchant> merchants = new ArrayList<Merchant>();
 		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/shopaholic", "root",
 				"Thisis4mySQL");
@@ -101,19 +97,12 @@ public class AdminServlet extends HttpServlet {
 				merchants.add(merchant);
 //				merchant.toString();
 			} 
-			
 			request.setAttribute("merchantdata", merchants); 
-//			for(Merchant m: merchants) {
-//				System.out.println(m.toString());
-//			}
-			
-//			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/adminhomepage.jsp");
-//			rd.forward(request, response);
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
+		/*********************DISPLAY PRODUCT INFORMATION*******************/
 		ArrayList<Product> products = new ArrayList<Product>();
 		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/shopaholic", "root",
 				"Thisis4mySQL");
@@ -129,18 +118,15 @@ public class AdminServlet extends HttpServlet {
 				String PID = resultSet.getString("PID");
 				String ProductName = resultSet.getString("ProductName");
 				String Price = resultSet.getString("Price");
+				String ProductType = resultSet.getString("ProductType");
 				product.setPID(PID);
 				product.setProductName(ProductName);
+				product.setProductType(ProductType);
 				product.setPrice(Price);
 				products.add(product);
-//				product.toString();
+				
 			} 
-			
 			request.setAttribute("productdata", products); 
-//			for(Product p: products) {
-//				System.out.println(p.toString());
-//			}
-			
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/adminhomepage.jsp");
 			rd.forward(request, response);
 			

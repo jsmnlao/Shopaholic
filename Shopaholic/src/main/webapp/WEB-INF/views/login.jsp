@@ -40,10 +40,14 @@
 					</select>
 			</table>
 			<h1></h1>
+			<%
+			String UID = (String) request.getAttribute("UID");
+			request.getSession().setAttribute("UID", UID);
+			%>
 			<input type="submit" value="Login" />
 		</form>
 		<h1></h1>
-		<a href="createaccount.jsp" >No account? Create an account!</a>
+		<a href="createaccount.jsp">No account? Create an account!</a>
 	</div>
 </body>
 </html>

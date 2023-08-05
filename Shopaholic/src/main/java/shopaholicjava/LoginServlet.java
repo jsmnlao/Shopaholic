@@ -1,18 +1,17 @@
 package shopaholicjava;
 
-import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 /**
@@ -104,12 +103,13 @@ public class LoginServlet extends HttpServlet {
 				userpst.setString(4, user.getUserName());
 				userpst.setString(5, user.getUserPassword());
 				
-				HttpSession session = request.getSession();
-				session.setAttribute(ID, user.getUID());
-				session.setAttribute(FirstName, user.getFirstName());
-				session.setAttribute(LastName, user.getLastName());
-				session.setAttribute(UserName, user.getUserName());
-				session.setAttribute(UserPassword, user.getUserPassword());
+//				HttpSession session = request.getSession();
+//				session.setAttribute(ID, user.getUID());
+//				session.setAttribute(FirstName, user.getFirstName());
+//				session.setAttribute(LastName, user.getLastName());
+//				session.setAttribute(UserName, user.getUserName());
+//				session.setAttribute(UserPassword, user.getUserPassword());
+//				request.setAttribute("UserInfo", session);
 				
 				resultSet = userpst.executeQuery();
 			}
@@ -120,12 +120,12 @@ public class LoginServlet extends HttpServlet {
 				merchantpst.setString(4, merchant.getUserName());
 				merchantpst.setString(5, merchant.getUserPassword());
 				
-				HttpSession session = request.getSession();
-				session.setAttribute(ID, merchant.getMID());
-				session.setAttribute(FirstName, merchant.getFirstName());
-				session.setAttribute(LastName, merchant.getLastName());
-				session.setAttribute(UserName, merchant.getUserName());
-				session.setAttribute(UserPassword, merchant.getUserPassword());
+//				HttpSession session = request.getSession();
+//				session.setAttribute(ID, merchant.getMID());
+//				session.setAttribute(FirstName, merchant.getFirstName());
+//				session.setAttribute(LastName, merchant.getLastName());
+//				session.setAttribute(UserName, merchant.getUserName());
+//				session.setAttribute(UserPassword, merchant.getUserPassword());
 				
 				resultSet = merchantpst.executeQuery();
 				
@@ -138,12 +138,12 @@ public class LoginServlet extends HttpServlet {
 				adminpst.setString(4, admin.getUserName());
 				adminpst.setString(5, admin.getUserPassword());
 				
-				HttpSession session = request.getSession();
-				session.setAttribute(ID, admin.getAID());
-				session.setAttribute(FirstName, admin.getFirstName());
-				session.setAttribute(LastName, admin.getLastName());
-				session.setAttribute(UserName, admin.getUserName());
-				session.setAttribute(UserPassword, admin.getUserPassword());
+//				HttpSession session = request.getSession();
+//				session.setAttribute(ID, admin.getAID());
+//				session.setAttribute(FirstName, admin.getFirstName());
+//				session.setAttribute(LastName, admin.getLastName());
+//				session.setAttribute(UserName, admin.getUserName());
+//				session.setAttribute(UserPassword, admin.getUserPassword());
 				
 				resultSet = adminpst.executeQuery();
 			}
@@ -152,12 +152,17 @@ public class LoginServlet extends HttpServlet {
 			if(resultSet.next() == true) {
 				RequestDispatcher dispatcher = null;
 				if(UserType.equals("User")) {
-					dispatcher = request.getRequestDispatcher("/WEB-INF/views/loginsuccess.jsp");
-					dispatcher.forward(request, response);
+					HttpSession session = request.getSession(true);
+					session.setAttribute("UID", user.getUID());
+					session.setAttribute("CID", "CC" + user.getUID().substring(2));
+					session.setAttribute("User", user);
+					response.sendRedirect("UserServlet");
 				}
 				else if(UserType.equals("Merchant")) {
-					dispatcher = request.getRequestDispatcher("/WEB-INF/views/loginsuccess.jsp");
-					dispatcher.forward(request, response);
+					HttpSession session = request.getSession(true);
+					session.setAttribute("MerchantName",  merchant.getUserName());
+					session.setAttribute("MID", merchant.getMID());
+					response.sendRedirect("MerchantServlet");
 				}
 				else if(UserType.equals("Admin")) {
 					response.sendRedirect("AdminServlet");

@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Login Confirmation</title>
+<title>Add Product Error</title>
 </head>
 <body>
- <h1>User sign unsuccessful.</h1>
- <a href="createaccount.jsp" >Please sign up again here.</a>
+ <h1>Adding product unsuccessful. Try again!</h1>
+ <a href="MerchantServlet" >Please click here to try again.</a>
 </body>
 </html>

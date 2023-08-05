@@ -74,6 +74,7 @@
 		<h2>Product Table</h2>
 			<th><b>PID</b></th>
 			<th><b>ProductName</b></th>
+			<th> ProductType </th>
 			<th><b>Price</b></th>
 			<th><b>Delete</b></th>
 			<th><b>Edit</b></th>
@@ -84,6 +85,7 @@
 			<tr>
 				<td><%=p.getPID()%></td>
 				<td><%=p.getProductName()%></td>
+				<td><%=p.getProductType()%></td>
 				<td>$<%=p.getPrice()%></td>
 				<td><a href="DeleteProductServlet?PID=<%=p.getPID()%>">Delete</a>
 				</td>

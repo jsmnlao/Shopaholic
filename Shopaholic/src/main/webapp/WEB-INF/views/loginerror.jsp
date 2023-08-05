@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Login Confirmation</title>
+<title>Login Error</title>
 </head>
 <body>
  <h1>User login unsuccessful. Try again!</h1>
+ <a href="LoginServlet" >Please log in again here.</a>
 </body>
 </html>

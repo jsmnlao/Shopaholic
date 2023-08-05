@@ -1,20 +1,17 @@
 package shopaholicjava;
 
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  * Servlet implementation class SignUpServlet
@@ -33,7 +30,7 @@ public class SignUpServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/createaccount.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/webapp/createaccount.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -77,6 +74,7 @@ public class SignUpServlet extends HttpServlet {
 		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/shopaholic", "root",
 				"Thisis4mySQL");
 				PreparedStatement userpst = con.prepareStatement("INSERT INTO MemberUsers (UID, FirstName, LastName, UserName, UserPassword) VALUES (?, ?, ?, ?, ?);");
+				PreparedStatement cartpst = con.prepareStatement("INSERT INTO Cart(CID, UID) VALUES(?, ?)");
 				PreparedStatement merchantpst = con.prepareStatement("INSERT INTO Merchants (MID, FirstName, LastName, UserName, UserPassword) VALUES (?, ?, ?, ?, ?);")){
 			
 			int resultSet = 0;
@@ -87,6 +85,9 @@ public class SignUpServlet extends HttpServlet {
 				userpst.setString(4, user.getUserName());
 				userpst.setString(5, user.getUserPassword());
 				
+				cartpst.setString(1, "CC" + user.getUID().substring(2));
+				cartpst.setString(2, user.getUID());
+				
 				HttpSession session = request.getSession();
 				session.setAttribute(ID, user.getUID());
 				session.setAttribute(FirstName, user.getFirstName());
@@ -94,13 +95,22 @@ public class SignUpServlet extends HttpServlet {
 				session.setAttribute(UserName, user.getUserName());
 				session.setAttribute(UserPassword, user.getUserPassword());
 				
-				//Check for duplicate user account information
-				try {
-					resultSet = userpst.executeUpdate();
-				}
-				catch(SQLException e) {
-					System.out.println("Duplicate keys!");
+				//Check if information is empty
+				if(user.getUID().isEmpty() || user.getFirstName().isEmpty() || user.getLastName().isEmpty()
+						|| user.getUserName().isEmpty() || user.getUserPassword().isEmpty()) {
 					approved = false;
+				}
+				else {
+					//Check for duplicate user account information
+					try {
+						resultSet = userpst.executeUpdate();
+						cartpst.executeUpdate();
+						request.setAttribute("CID", "CC" + user.getUID().substring(2));
+					}
+					catch(SQLException e) {
+//						System.out.println("Duplicate keys!");
+						approved = false;
+					}
 				}
 			}
 			else if(UserType.equals("Merchant")) {
@@ -117,13 +127,20 @@ public class SignUpServlet extends HttpServlet {
 				session.setAttribute(UserName, merchant.getUserName());
 				session.setAttribute(UserPassword, merchant.getUserPassword());
 								
-				//Check for duplicate merchant account information
-				try {
-					resultSet = userpst.executeUpdate();
-				}
-				catch(SQLException e) {
-					System.out.println("Duplicate keys!");
+				//Check if information is empty
+				if(merchant.getMID().isEmpty() || merchant.getFirstName().isEmpty() || merchant.getLastName().isEmpty()
+						|| merchant.getUserName().isEmpty() || merchant.getUserPassword().isEmpty()) {
 					approved = false;
+				}
+				else {
+					//Check for duplicate user account information
+					try {
+						resultSet = merchantpst.executeUpdate();
+					}
+					catch(SQLException e) {
+//						System.out.println("Duplicate keys!");
+						approved = false;
+					}
 				}
 			} 
 			
@@ -133,8 +150,9 @@ public class SignUpServlet extends HttpServlet {
 				dispatcher.forward(request, response);
 			}
 			else if(approved == true) {
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/loginsuccess.jsp");
-				dispatcher.forward(request, response);
+//				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/userhomepage.jsp");
+//				dispatcher.forward(request, response);
+				response.sendRedirect("UserServlet");
 			}
 		}
 		catch (SQLException e) {

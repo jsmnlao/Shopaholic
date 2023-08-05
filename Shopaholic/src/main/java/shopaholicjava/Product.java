@@ -5,9 +5,9 @@ public class Product {
 	private String PID;
 	private String ProductName;
 	private String Price;
-//	private String ProductDescription;
-//	private boolean Availability;
-//	private String ProductType;
+	private String ProductType;
+	private String ProductDescription;
+	private boolean Availability;
 	
 	public String getPID() {
 		return PID;
@@ -33,28 +33,33 @@ public class Product {
 		Price = price;
 	}
 	
-//	public String getProductDescription() {
-//		return ProductDescription;
-//	}
-//	
-//	public void setProductDescription(String productDescription) {
-//		ProductDescription = productDescription;
-//	}
-//	
-//	public boolean isAvailability() {
-//		return Availability;
-//	}
-//	
-//	public void setAvailability(boolean availability) {
-//		Availability = availability;
-//	}
-//	
-//	public String getProductType() {
-//		return ProductType;
-//	}
-//	
-//	public void setProductType(String productType) {
-//		ProductType = productType;
-//	}
+	public String getProductDescription() {
+		return ProductDescription;
+	}
 	
+	public void setProductDescription(String productDescription) {
+		ProductDescription = productDescription;
+	}
+	
+	public boolean isAvailability() {
+		return Availability;
+	}
+	
+	public void setAvailability(boolean availability) {
+		Availability = availability;
+	}
+	
+	public String getProductType() {
+		return ProductType;
+	}
+	
+	public void setProductType(String productType) {
+		ProductType = productType;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [PID=" + PID + ", ProductName=" + ProductName + ", Price=" + Price + ", ProductType="
+				+ ProductType + "]";
+	}
 }
