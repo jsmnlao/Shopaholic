@@ -1,4 +1,5 @@
-package shopaholicjava;
+package servlets;
+import shopaholicjava.*;
 
 import java.io.IOException;
 

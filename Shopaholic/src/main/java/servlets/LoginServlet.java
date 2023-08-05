@@ -1,4 +1,5 @@
-package shopaholicjava;
+package servlets;
+import shopaholicjava.*;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -103,13 +104,6 @@ public class LoginServlet extends HttpServlet {
 				userpst.setString(4, user.getUserName());
 				userpst.setString(5, user.getUserPassword());
 				
-//				HttpSession session = request.getSession();
-//				session.setAttribute(ID, user.getUID());
-//				session.setAttribute(FirstName, user.getFirstName());
-//				session.setAttribute(LastName, user.getLastName());
-//				session.setAttribute(UserName, user.getUserName());
-//				session.setAttribute(UserPassword, user.getUserPassword());
-//				request.setAttribute("UserInfo", session);
 				
 				resultSet = userpst.executeQuery();
 			}
@@ -119,13 +113,6 @@ public class LoginServlet extends HttpServlet {
 				merchantpst.setString(3, merchant.getLastName());
 				merchantpst.setString(4, merchant.getUserName());
 				merchantpst.setString(5, merchant.getUserPassword());
-				
-//				HttpSession session = request.getSession();
-//				session.setAttribute(ID, merchant.getMID());
-//				session.setAttribute(FirstName, merchant.getFirstName());
-//				session.setAttribute(LastName, merchant.getLastName());
-//				session.setAttribute(UserName, merchant.getUserName());
-//				session.setAttribute(UserPassword, merchant.getUserPassword());
 				
 				resultSet = merchantpst.executeQuery();
 				

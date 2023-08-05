@@ -1,4 +1,5 @@
-package shopaholicjava;
+package servlets;
+import shopaholicjava.*;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;

@@ -1,5 +1,5 @@
-package shopaholicjava;
-
+package servlets;
+import shopaholicjava.*;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,23 +12,24 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class EditProductServlet
+ * Servlet implementation class EditUserServlet
  */
-public class EditProductServlet extends HttpServlet {
+public class EditUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EditProductServlet() {
+    public EditUserServlet() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/editproduct.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/edituser.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -44,9 +45,11 @@ public class EditProductServlet extends HttpServlet {
         }
         //Else, continue to change info
         else {
-    		String PID = request.getParameter("PID");
-    		String ProductName = request.getParameter("ProductName");
-    		String Price = request.getParameter("Price");
+    		String UID = request.getParameter("UID");
+    		String FirstName = request.getParameter("FirstName");
+    		String LastName = request.getParameter("LastName");
+    		String UserName = request.getParameter("UserName");
+    		String UserPassword = request.getParameter("UserPassword");
     		try {
     			Class.forName("com.mysql.cj.jdbc.Driver");
 //    			System.out.println("Connected!");
@@ -56,10 +59,12 @@ public class EditProductServlet extends HttpServlet {
     		
     		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/shopaholic", "root",
     				"Thisis4mySQL");){
-    			PreparedStatement pst = con.prepareStatement("UPDATE Products SET ProductName = ?, Price = ? WHERE PID = ?;");
-    			pst.setString(1, ProductName);
-    			pst.setString(2, Price);
-    			pst.setString(3, PID);
+    			PreparedStatement pst = con.prepareStatement("UPDATE MemberUsers SET FirstName = ?, LastName = ?, UserName = ?, UserPassword = ? WHERE UID = ?;");
+    			pst.setString(1, FirstName);
+    			pst.setString(2, LastName);
+    			pst.setString(3, UserName);
+    			pst.setString(4, UserPassword);
+    			pst.setString(5, UID);
     			pst.executeUpdate();
 //    			System.out.println("Executed update query");
     		}
@@ -68,9 +73,11 @@ public class EditProductServlet extends HttpServlet {
     		}
     		response.sendRedirect("AdminServlet");
         }
-	}
 
+	}
+	 
 	protected void cancel(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.sendRedirect("AdminServlet");
 	}
+
 }

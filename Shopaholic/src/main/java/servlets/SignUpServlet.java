@@ -1,4 +1,5 @@
-package shopaholicjava;
+package servlets;
+import shopaholicjava.*;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -88,13 +89,6 @@ public class SignUpServlet extends HttpServlet {
 				cartpst.setString(1, "CC" + user.getUID().substring(2));
 				cartpst.setString(2, user.getUID());
 				
-				HttpSession session = request.getSession();
-				session.setAttribute(ID, user.getUID());
-				session.setAttribute(FirstName, user.getFirstName());
-				session.setAttribute(LastName, user.getLastName());
-				session.setAttribute(UserName, user.getUserName());
-				session.setAttribute(UserPassword, user.getUserPassword());
-				
 				//Check if information is empty
 				if(user.getUID().isEmpty() || user.getFirstName().isEmpty() || user.getLastName().isEmpty()
 						|| user.getUserName().isEmpty() || user.getUserPassword().isEmpty()) {
@@ -105,10 +99,11 @@ public class SignUpServlet extends HttpServlet {
 					try {
 						resultSet = userpst.executeUpdate();
 						cartpst.executeUpdate();
-						request.setAttribute("CID", "CC" + user.getUID().substring(2));
+						HttpSession session = request.getSession(true);
+						session.setAttribute("UID", user.getUID());
+						session.setAttribute("CID", "CC" + user.getUID().substring(2));
 					}
 					catch(SQLException e) {
-//						System.out.println("Duplicate keys!");
 						approved = false;
 					}
 				}

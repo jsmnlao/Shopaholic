@@ -1,4 +1,5 @@
-package shopaholicjava;
+package servlets;
+import shopaholicjava.*;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -68,7 +69,7 @@ public class AddToCartServlet extends HttpServlet {
             e.printStackTrace();
         }
     	
-    	//DELTE PRODUCT INFO
+    	//DELETE PRODUCT INFO
 //    	try (Connection conn = DatabaseConnection.getConnection();){
 //			PreparedStatement pst = conn.prepareStatement("DELETE FROM Products WHERE PID =?");
 //			pst.setString(1, PID);

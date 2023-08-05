@@ -1,4 +1,5 @@
-package shopaholicjava;
+package servlets;
+import shopaholicjava.*;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -12,15 +13,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class EditUserServlet
+ * Servlet implementation class EditMerchantServlet
  */
-public class EditUserServlet extends HttpServlet {
+public class EditMerchantServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EditUserServlet() {
+    public EditMerchantServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,8 +30,9 @@ public class EditUserServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/edituser.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/editmerchant.jsp");
 		dispatcher.forward(request, response);
+		
 	}
 
 	/**
@@ -45,7 +47,7 @@ public class EditUserServlet extends HttpServlet {
         }
         //Else, continue to change info
         else {
-    		String UID = request.getParameter("UID");
+    		String MID = request.getParameter("MID");
     		String FirstName = request.getParameter("FirstName");
     		String LastName = request.getParameter("LastName");
     		String UserName = request.getParameter("UserName");
@@ -59,14 +61,14 @@ public class EditUserServlet extends HttpServlet {
     		
     		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/shopaholic", "root",
     				"Thisis4mySQL");){
-    			PreparedStatement pst = con.prepareStatement("UPDATE MemberUsers SET FirstName = ?, LastName = ?, UserName = ?, UserPassword = ? WHERE UID = ?;");
+    			PreparedStatement pst = con.prepareStatement("UPDATE Merchants SET FirstName = ?, LastName = ?, UserName = ?, UserPassword = ? WHERE MID = ?;");
     			pst.setString(1, FirstName);
     			pst.setString(2, LastName);
     			pst.setString(3, UserName);
     			pst.setString(4, UserPassword);
-    			pst.setString(5, UID);
+    			pst.setString(5, MID);
     			pst.executeUpdate();
-//    			System.out.println("Executed update query");
+    			System.out.println("Executed update query");
     		}
     		catch(Exception e) {
     			e.printStackTrace();
@@ -75,7 +77,7 @@ public class EditUserServlet extends HttpServlet {
         }
 
 	}
-	 
+	
 	protected void cancel(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.sendRedirect("AdminServlet");
 	}

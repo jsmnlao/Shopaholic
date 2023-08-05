@@ -1,4 +1,5 @@
-package shopaholicjava;
+package servlets;
+import shopaholicjava.*;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -105,11 +106,17 @@ public class ReviewServlet extends HttpServlet {
 //                    productId = generatedKeys.getInt(1);
 //                }
             }
+            catch (SQLException e) {
+            	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/addreviewerror.jsp");
+    			dispatcher.forward(request, response);
+            }
 		
 		response.sendRedirect("ReviewServlet");
-        } catch (SQLException e) {
-          e.printStackTrace();
-      }
+        } 
+        catch (SQLException e) {
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/addreviewerror.jsp");
+			dispatcher.forward(request, response);
+        }
 	}
 
 }

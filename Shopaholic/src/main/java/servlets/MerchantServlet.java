@@ -1,4 +1,5 @@
-package shopaholicjava;
+package servlets;
+import shopaholicjava.*;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -8,12 +9,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-//
-//import javax.servlet.RequestDispatcher;
-//import javax.servlet.ServletException;
-//import javax.servlet.http.HttpServlet;
-//import javax.servlet.http.HttpServletRequest;
-//import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -130,8 +125,6 @@ public class MerchantServlet extends HttpServlet {
                   
                   HttpSession session = request.getSession(true);
                   session.setAttribute("merchantdata",  products);
-                  System.out.println("Set attribute merchantdata");
-                  System.out.println("merchantdata: " + request.getSession().getAttribute("merchantdata"));
                   RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/merchanthomepage.jsp");
                   rd.forward(request, response);
               }
@@ -183,7 +176,7 @@ public class MerchantServlet extends HttpServlet {
             
            
         } catch (SQLException e) {
-//            e.printStackTrace();
+//          e.printStackTrace();
 //          response.getWriter().println("Error occurred while adding the product to the database.");
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/addproducterror.jsp");
 			dispatcher.forward(request, response);

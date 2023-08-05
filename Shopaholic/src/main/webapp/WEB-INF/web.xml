@@ -23,7 +23,7 @@
     <description></description>
     <display-name>LoginServlet</display-name>
     <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>shopaholicjava.LoginServlet</servlet-class>
+    <servlet-class>servlets.LoginServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
@@ -33,7 +33,7 @@
     <description></description>
     <display-name>SignUpServlet</display-name>
     <servlet-name>SignUpServlet</servlet-name>
-    <servlet-class>shopaholicjava.SignUpServlet</servlet-class>
+    <servlet-class>servlets.SignUpServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>SignUpServlet</servlet-name>
@@ -43,7 +43,7 @@
     <description></description>
     <display-name>AdminServlet</display-name>
     <servlet-name>AdminServlet</servlet-name>
-    <servlet-class>shopaholicjava.AdminServlet</servlet-class>
+    <servlet-class>servlets.AdminServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>AdminServlet</servlet-name>
@@ -53,7 +53,7 @@
     <description></description>
     <display-name>DeleteUserServlet</display-name>
     <servlet-name>DeleteUserServlet</servlet-name>
-    <servlet-class>shopaholicjava.DeleteUserServlet</servlet-class>
+    <servlet-class>servlets.DeleteUserServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>DeleteUserServlet</servlet-name>
@@ -63,7 +63,7 @@
     <description></description>
     <display-name>DeleteMerchantServlet</display-name>
     <servlet-name>DeleteMerchantServlet</servlet-name>
-    <servlet-class>shopaholicjava.DeleteMerchantServlet</servlet-class>
+    <servlet-class>servlets.DeleteMerchantServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>DeleteMerchantServlet</servlet-name>
@@ -73,7 +73,7 @@
     <description></description>
     <display-name>DeleteProductServlet</display-name>
     <servlet-name>DeleteProductServlet</servlet-name>
-    <servlet-class>shopaholicjava.DeleteProductServlet</servlet-class>
+    <servlet-class>servlets.DeleteProductServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>DeleteProductServlet</servlet-name>
@@ -83,7 +83,7 @@
     <description></description>
     <display-name>EditUserServlet</display-name>
     <servlet-name>EditUserServlet</servlet-name>
-    <servlet-class>shopaholicjava.EditUserServlet</servlet-class>
+    <servlet-class>servlets.EditUserServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>EditUserServlet</servlet-name>
@@ -93,7 +93,7 @@
     <description></description>
     <display-name>EditMerchantServlet</display-name>
     <servlet-name>EditMerchantServlet</servlet-name>
-    <servlet-class>shopaholicjava.EditMerchantServlet</servlet-class>
+    <servlet-class>servlets.EditMerchantServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>EditMerchantServlet</servlet-name>
@@ -103,7 +103,7 @@
     <description></description>
     <display-name>EditProductServlet</display-name>
     <servlet-name>EditProductServlet</servlet-name>
-    <servlet-class>shopaholicjava.EditProductServlet</servlet-class>
+    <servlet-class>servlets.EditProductServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>EditProductServlet</servlet-name>
@@ -113,7 +113,7 @@
     <description></description>
     <display-name>UserServlet</display-name>
     <servlet-name>UserServlet</servlet-name>
-    <servlet-class>shopaholicjava.UserServlet</servlet-class>
+    <servlet-class>servlets.UserServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>UserServlet</servlet-name>
@@ -123,7 +123,7 @@
     <description></description>
     <display-name>EditCartServlet</display-name>
     <servlet-name>EditCartServlet</servlet-name>
-    <servlet-class>shopaholicjava.EditCartServlet</servlet-class>
+    <servlet-class>servlets.EditCartServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>EditCartServlet</servlet-name>
@@ -133,7 +133,7 @@
     <description></description>
     <display-name>MerchantServlet</display-name>
     <servlet-name>MerchantServlet</servlet-name>
-    <servlet-class>shopaholicjava.MerchantServlet</servlet-class>
+    <servlet-class>servlets.MerchantServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>MerchantServlet</servlet-name>
@@ -143,7 +143,7 @@
     <description></description>
     <display-name>DeleteMerchantProductServlet</display-name>
     <servlet-name>DeleteMerchantProductServlet</servlet-name>
-    <servlet-class>shopaholicjava.DeleteMerchantProductServlet</servlet-class>
+    <servlet-class>servlets.DeleteMerchantProductServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>DeleteMerchantProductServlet</servlet-name>
@@ -153,7 +153,7 @@
     <description></description>
     <display-name>AddToCartServlet</display-name>
     <servlet-name>AddToCartServlet</servlet-name>
-    <servlet-class>shopaholicjava.AddToCartServlet</servlet-class>
+    <servlet-class>servlets.AddToCartServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>AddToCartServlet</servlet-name>
@@ -163,7 +163,7 @@
     <description></description>
     <display-name>DeleteFromCartServlet</display-name>
     <servlet-name>DeleteFromCartServlet</servlet-name>
-    <servlet-class>shopaholicjava.DeleteFromCartServlet</servlet-class>
+    <servlet-class>servlets.DeleteFromCartServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>DeleteFromCartServlet</servlet-name>
@@ -173,7 +173,7 @@
     <description></description>
     <display-name>ReviewServlet</display-name>
     <servlet-name>ReviewServlet</servlet-name>
-    <servlet-class>shopaholicjava.ReviewServlet</servlet-class>
+    <servlet-class>servlets.ReviewServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ReviewServlet</servlet-name>
@@ -183,10 +183,20 @@
     <description></description>
     <display-name>ViewOrdersServlet</display-name>
     <servlet-name>ViewOrdersServlet</servlet-name>
-    <servlet-class>shopaholicjava.ViewOrdersServlet</servlet-class>
+    <servlet-class>servlets.ViewOrdersServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ViewOrdersServlet</servlet-name>
     <url-pattern>/ViewOrdersServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteOrderServlet</display-name>
+    <servlet-name>DeleteOrderServlet</servlet-name>
+    <servlet-class>servlets.DeleteOrderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteOrderServlet</servlet-name>
+    <url-pattern>/DeleteOrderServlet</url-pattern>
   </servlet-mapping>
 </web-app>

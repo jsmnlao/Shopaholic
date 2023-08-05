@@ -98,6 +98,28 @@
 		</table>
 		<h1></h1>
 		
+		<table border="1" width="500" align="center">
+		<h2>Order Table</h2>
+			<th><b>OID</b></th>
+			<th><b>CID</b></th>
+			<th> ProductName </th>
+			<th> Delete </th>
+			<%
+			ArrayList<Order> orders = (ArrayList<Order>) request.getAttribute("orderdata");
+			for (Order o : orders) {
+			%>
+			<tr>
+				<td><%=o.getOID()%></td>
+				<td><%=o.getCID()%></td>
+				<td><%=o.getProductName()%></td>
+				<td><a href="DeleteOrderServlet?OID=<%=o.getOID()%>">Delete</a>
+			</tr>
+			<%
+			}
+			%>
+		</table>
+		<h1></h1>
+		
 		<a href="LoginServlet">Log Out</a>
 	</div>
 </body>

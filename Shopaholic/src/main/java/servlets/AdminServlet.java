@@ -1,4 +1,5 @@
-package shopaholicjava;
+package servlets;
+import shopaholicjava.*;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -127,14 +128,39 @@ public class AdminServlet extends HttpServlet {
 				
 			} 
 			request.setAttribute("productdata", products); 
+//			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/adminhomepage.jsp");
+//			rd.forward(request, response);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		/*********************DISPLAY ORDER INFORMATION*******************/
+		ArrayList<Order> orders = new ArrayList<Order>();
+		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/shopaholic", "root",
+				"Thisis4mySQL");
+				Statement s = con.createStatement();
+				ResultSet resultSet = s.executeQuery("SELECT * FROM Orders");){
+			
+			while(resultSet.next()) {
+				Order order = new Order();
+				String OID = resultSet.getString("OID");
+				String CID = resultSet.getString("CID");
+				String ProductName = resultSet.getString("ProductName");
+				order.setOID(OID);
+				order.setCID(CID);
+				order.setProductName(ProductName);
+				orders.add(order);
+				
+			} 
+			request.setAttribute("orderdata", orders); 
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/adminhomepage.jsp");
 			rd.forward(request, response);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
+
 	}
 
 	/**
