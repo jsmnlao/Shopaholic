@@ -34,21 +34,10 @@ public class AdminServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/adminhomepage.jsp");
-//		dispatcher.forward(request, response);
-		
-//		System.out.println("In doGet method");
-		
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-//			System.out.println("Connected!");
-		} catch (ClassNotFoundException e) {
-			System.out.println(e.getMessage());
-		}
 		
 		/*********************DISPLAY USER INFORMATION*******************/
 		ArrayList<User> users = new ArrayList<User>();
-		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/shopaholic", "root",
-				"Thisis4mySQL");
+		try (Connection con = DatabaseConnection.getConnection();
 				Statement s = con.createStatement();
 				ResultSet resultSet = s.executeQuery("SELECT * FROM MemberUsers;");){
 			
@@ -76,8 +65,7 @@ public class AdminServlet extends HttpServlet {
 		
 		/*********************DISPLAY MERCHANT INFORMATION*******************/
 		ArrayList<Merchant> merchants = new ArrayList<Merchant>();
-		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/shopaholic", "root",
-				"Thisis4mySQL");
+		try (Connection con = DatabaseConnection.getConnection();
 				Statement s = con.createStatement();
 				ResultSet resultSet = s.executeQuery("SELECT * FROM Merchants;");){
 			
@@ -105,8 +93,7 @@ public class AdminServlet extends HttpServlet {
 		
 		/*********************DISPLAY PRODUCT INFORMATION*******************/
 		ArrayList<Product> products = new ArrayList<Product>();
-		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/shopaholic", "root",
-				"Thisis4mySQL");
+		try (Connection con = DatabaseConnection.getConnection();
 				Statement s = con.createStatement();
 				ResultSet resultSet = s.executeQuery("SELECT * FROM Products");){
 			
@@ -137,8 +124,7 @@ public class AdminServlet extends HttpServlet {
 		
 		/*********************DISPLAY ORDER INFORMATION*******************/
 		ArrayList<Order> orders = new ArrayList<Order>();
-		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/shopaholic", "root",
-				"Thisis4mySQL");
+		try (Connection con = DatabaseConnection.getConnection();
 				Statement s = con.createStatement();
 				ResultSet resultSet = s.executeQuery("SELECT * FROM Orders");){
 			

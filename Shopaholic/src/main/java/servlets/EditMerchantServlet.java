@@ -52,15 +52,8 @@ public class EditMerchantServlet extends HttpServlet {
     		String LastName = request.getParameter("LastName");
     		String UserName = request.getParameter("UserName");
     		String UserPassword = request.getParameter("UserPassword");
-    		try {
-    			Class.forName("com.mysql.cj.jdbc.Driver");
-//    			System.out.println("Connected!");
-    		} catch (ClassNotFoundException e) {
-    			System.out.println(e.getMessage());
-    		}
     		
-    		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/shopaholic", "root",
-    				"Thisis4mySQL");){
+    		try (Connection con = DatabaseConnection.getConnection();){
     			PreparedStatement pst = con.prepareStatement("UPDATE Merchants SET FirstName = ?, LastName = ?, UserName = ?, UserPassword = ? WHERE MID = ?;");
     			pst.setString(1, FirstName);
     			pst.setString(2, LastName);

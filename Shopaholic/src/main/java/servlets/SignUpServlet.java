@@ -64,16 +64,8 @@ public class SignUpServlet extends HttpServlet {
 			merchant.setUserPassword(UserPassword);
 		}
 		
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-//			System.out.println("Connected!");
-		} catch (ClassNotFoundException e) {
-			System.out.println(e.getMessage());
-		}
-		
 		boolean approved = true;
-		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/shopaholic", "root",
-				"Thisis4mySQL");
+		try (Connection con = DatabaseConnection.getConnection();
 				PreparedStatement userpst = con.prepareStatement("INSERT INTO MemberUsers (UID, FirstName, LastName, UserName, UserPassword) VALUES (?, ?, ?, ?, ?);");
 				PreparedStatement cartpst = con.prepareStatement("INSERT INTO Cart(CID, UID) VALUES(?, ?)");
 				PreparedStatement merchantpst = con.prepareStatement("INSERT INTO Merchants (MID, FirstName, LastName, UserName, UserPassword) VALUES (?, ?, ?, ?, ?);")){
@@ -101,6 +93,7 @@ public class SignUpServlet extends HttpServlet {
 						cartpst.executeUpdate();
 						HttpSession session = request.getSession(true);
 						session.setAttribute("UID", user.getUID());
+						session.setAttribute("UserName", user.getUserName());
 						session.setAttribute("CID", "CC" + user.getUID().substring(2));
 					}
 					catch(SQLException e) {
@@ -130,10 +123,11 @@ public class SignUpServlet extends HttpServlet {
 				else {
 					//Check for duplicate user account information
 					try {
+						session.setAttribute("MerchantName", merchant.getUserName());
+						session.setAttribute("MID", merchant.getMID());
 						resultSet = merchantpst.executeUpdate();
 					}
 					catch(SQLException e) {
-//						System.out.println("Duplicate keys!");
 						approved = false;
 					}
 				}
@@ -145,9 +139,13 @@ public class SignUpServlet extends HttpServlet {
 				dispatcher.forward(request, response);
 			}
 			else if(approved == true) {
-//				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/userhomepage.jsp");
-//				dispatcher.forward(request, response);
-				response.sendRedirect("UserServlet");
+				if(UserType.equals("User")) {
+					response.sendRedirect("UserServlet");
+				}
+				else if(UserType.equals("Merchant")) {
+					response.sendRedirect("MerchantServlet");
+				}
+				
 			}
 		}
 		catch (SQLException e) {

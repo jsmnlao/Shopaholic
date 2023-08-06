@@ -82,16 +82,7 @@ public class LoginServlet extends HttpServlet {
 		}
 		
 		
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-//			System.out.println("Connected!");
-		} catch (ClassNotFoundException e) {
-			System.out.println(e.getMessage());
-		}
-		
-		
-		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/shopaholic", "root",
-				"Thisis4mySQL");
+		try (Connection con = DatabaseConnection.getConnection();
 				PreparedStatement userpst = con.prepareStatement("SELECT * FROM MemberUsers WHERE UID =? AND FirstName =? AND LastName =? AND UserName = ? AND UserPassword =?");
 				PreparedStatement merchantpst = con.prepareStatement("SELECT * FROM Merchants WHERE MID =? AND FirstName =? AND LastName =? AND UserName = ? AND UserPassword =?");
 				PreparedStatement adminpst = con.prepareStatement("SELECT * FROM Admin WHERE AID =? AND FirstName =? AND LastName =? AND UserName = ? AND UserPassword =?")) {
@@ -141,6 +132,7 @@ public class LoginServlet extends HttpServlet {
 				if(UserType.equals("User")) {
 					HttpSession session = request.getSession(true);
 					session.setAttribute("UID", user.getUID());
+					session.setAttribute("UserName", user.getUserName());
 					session.setAttribute("CID", "CC" + user.getUID().substring(2));
 					session.setAttribute("User", user);
 					response.sendRedirect("UserServlet");

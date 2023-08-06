@@ -121,8 +121,8 @@ public class MerchantServlet extends HttpServlet {
                       product.setPrice(resultSet.getString("Price"));
                       products.add(product);
                   }
-               // Set the products as a request attribute to be displayed in the JSP
                   
+               // Set the products as a request attribute to be displayed in the JSP
                   HttpSession session = request.getSession(true);
                   session.setAttribute("merchantdata",  products);
                   RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/merchanthomepage.jsp");

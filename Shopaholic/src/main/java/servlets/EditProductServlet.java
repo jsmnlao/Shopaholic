@@ -48,15 +48,8 @@ public class EditProductServlet extends HttpServlet {
     		String PID = request.getParameter("PID");
     		String ProductName = request.getParameter("ProductName");
     		String Price = request.getParameter("Price");
-    		try {
-    			Class.forName("com.mysql.cj.jdbc.Driver");
-//    			System.out.println("Connected!");
-    		} catch (ClassNotFoundException e) {
-    			System.out.println(e.getMessage());
-    		}
     		
-    		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/shopaholic", "root",
-    				"Thisis4mySQL");){
+    		try (Connection con = DatabaseConnection.getConnection();){
     			PreparedStatement pst = con.prepareStatement("UPDATE Products SET ProductName = ?, Price = ? WHERE PID = ?;");
     			pst.setString(1, ProductName);
     			pst.setString(2, Price);

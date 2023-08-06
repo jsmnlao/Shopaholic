@@ -31,15 +31,8 @@ public class DeleteMerchantServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String MID = request.getParameter("MID");
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-//			System.out.println("Connected!");
-		} catch (ClassNotFoundException e) {
-			System.out.println(e.getMessage());
-		}
 		
-		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/shopaholic", "root",
-				"Thisis4mySQL");){
+		try (Connection con = DatabaseConnection.getConnection();){
 			PreparedStatement pst = con.prepareStatement("DELETE FROM Merchants WHERE MID =?");
 			pst.setString(1, MID);
 			pst.executeUpdate();

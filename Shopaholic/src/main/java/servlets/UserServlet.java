@@ -34,7 +34,9 @@ public class UserServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().getAttribute("UID");
 		String UID = (String) request.getSession(false).getAttribute("UID");
+		String UserName = (String) request.getSession(false).getAttribute("UserName");
 		String CID = (String) request.getSession(false).getAttribute("CID");
+		
 		
 		try {
 			ArrayList<Product> products = new ArrayList<Product>();
@@ -60,6 +62,7 @@ public class UserServlet extends HttpServlet {
 				} 
 				
 				request.setAttribute("UID", UID);
+				request.setAttribute("UserName", UserName);			
 				request.setAttribute("CID", CID);
 				request.setAttribute("productdata", products);
 				

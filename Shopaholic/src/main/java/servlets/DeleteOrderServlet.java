@@ -5,6 +5,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import shopaholicjava.DatabaseConnection;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -29,15 +31,8 @@ public class DeleteOrderServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String OID = request.getParameter("OID");
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-//			System.out.println("Connected!");
-		} catch (ClassNotFoundException e) {
-			System.out.println(e.getMessage());
-		}
 		
-		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/shopaholic", "root",
-				"Thisis4mySQL");){
+		try (Connection con = DatabaseConnection.getConnection();){
 			PreparedStatement pst = con.prepareStatement("DELETE FROM Orders WHERE OID =?");
 			pst.setString(1, OID);
 			pst.executeUpdate();
