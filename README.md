@@ -7,7 +7,7 @@ Purpose of Application: Our e-commerce website will be a place for users to shop
 
 Application Functionalities: Our website will have three main components: users, merchants/small businesses, and admin. These three components will have different functionalities and have access to different parts of the website. With these different views, only necessary data will be presented and details of the underlying implementation will be hidden. 
 
-#How to Setup Application
+# How to Setup Shopaholic Application
 
 Technologies/Software used: 
 - Eclipse IDE
