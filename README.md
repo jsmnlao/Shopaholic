@@ -40,4 +40,4 @@ Technologies/Software used:
 # Division of Work
 - Jasmine: README.md, Login, Admin, integration of all files, presentation slides, ER Diagram, final report
 - Phuong: User and Review page, ER Diagram, final report
-- Gael: 
+- Gael: merchant view page, user cart and user order history page (edit,delete, update), final report
